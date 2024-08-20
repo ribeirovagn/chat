@@ -1,0 +1,20 @@
+services:
+  yamq:
+    image: rabbitmq:management-alpine
+    container_name: ${CONTAINER_NAME}
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBIT_MQ_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBIT_MQ_PASS}
+    ports:
+      - 5671:5671
+      - 15671:15671
+      - 15692:15692
+    networks:
+      - rabbitMQ_net
+networks:
+  rabbitMQ_net:
+    name: ${NETWORK_NAME}
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.16.240.0/24
