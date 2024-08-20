@@ -1,4 +1,4 @@
-import amqplib, { Channel, Connection, credentials } from "amqplib";
+import amqplib, { Channel, Connection } from "amqplib";
 import "dotenv/config";
 
 export default class RabbitMQConnection {

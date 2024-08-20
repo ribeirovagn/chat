@@ -3,23 +3,20 @@ import Producer from "../queue/Producer";
 
 export default class SendMessage {
 
-    constructor(readonly producer: Producer) {
+    constructor(readonly producer: Producer) {}
 
-    }
-
-    async execute(input: Input): Promise<Output> {
+    async execute(input: Input): Promise<Message> {
         const time = new Date().getTime();
         const message = Message.create(input.message, time, input.from, input.subject);
+        const parsed = JSON.stringify(message);
 
         // Enfileiramento de menssagens
-        this.producer.init(message, {
+        await this.producer.init(parsed, {
             queueName: "message-sending",
             exchangeName: "message",  
         });
 
-        return { 
-            message
-        };
+        return message;
     }
 }
 
@@ -33,8 +30,4 @@ type Input = {
         email: string
     },
     message: string
-}
-
-type Output = {
-    message: Message,
 }

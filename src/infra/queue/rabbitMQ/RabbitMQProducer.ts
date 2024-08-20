@@ -5,7 +5,7 @@ import Producer from "../../../application/queue/Producer";
 
 export default class RabbitMQProducer implements Producer{
 
-    async init(data: any, options: OptsProducer) {
+    async init(data: Object, options: OptsProducer) {
 
         await RabbitMQConnection.getInstance();
 

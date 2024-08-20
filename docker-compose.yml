@@ -6,8 +6,8 @@ services:
       RABBITMQ_DEFAULT_USER: ${RABBIT_MQ_USER}
       RABBITMQ_DEFAULT_PASS: ${RABBIT_MQ_PASS}
     ports:
-      - 5671:5671
-      - 15671:15671
+      - 5672:5672
+      - 15672:15672
       - 15692:15692
     networks:
       - rabbitMQ_net
