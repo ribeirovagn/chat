@@ -2,7 +2,7 @@ import User from "./User";
 
 export default class Message {
 
-    constructor(readonly text: string, readonly time: Date, readonly from: User, readonly subject: User) {
+    constructor(readonly text: string, readonly time: Date, readonly sender: User, readonly recipient: User) {
         
     }
 

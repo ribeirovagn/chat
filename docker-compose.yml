@@ -9,12 +9,26 @@ services:
       - 5672:5672
       - 15672:15672
       - 15692:15692
-    networks:
-      - rabbitMQ_net
-networks:
-  rabbitMQ_net:
-    name: ${NETWORK_NAME}
-    driver: bridge
-    ipam:
-      config:
-        - subnet: 172.16.240.0/24
+
+  db:
+    image: postgres:16
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+      POSTGRES_DB: ${DB_NAME}
+      TZ: America/Sao_Paulo
+    ports:
+      - "${DB_PORT}:${DB_PORT}" 
+    volumes:
+      - ./innitDB.sql:/docker-entrypoint-initdb.d/init.sql      
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "vagner@visualsoftware.inf.br"
+      PGADMIN_DEFAULT_PASSWORD: ${DB_PASS}
+    ports:
+      - "16543:80"
+    depends_on:
+      - db

@@ -21,11 +21,11 @@ export default class SendMessage {
 }
 
 type Input = {
-    from: {
+    sender: {
         name: string,
         email: string
     },
-    subject: {
+    recipient: {
         name: string,
         email: string
     },

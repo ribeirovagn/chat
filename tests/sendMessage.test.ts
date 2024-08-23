@@ -8,11 +8,11 @@ test("Deve enviar uma mensagem", async () => {
     const sendMessage = new SendMessage(producer);
 
     const input = {
-        from: {
+        sender: {
             name: "Vagner Ribeiro",
             email: "ribeirovagn@gmail.com"
         },
-        subject: {
+        recipient: {
             name: "Fedora Ribeiro",
             email: "vagn.fedora@gmail.com"
         },
