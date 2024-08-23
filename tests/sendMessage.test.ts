@@ -14,10 +14,12 @@ test("Deve enviar uma mensagem", async () => {
     sender: {
       name: "Vagner Ribeiro",
       email: "ribeirovagn@gmail.com",
+      id: "d290f1ee-6c54-4b01-90e6-d701748f0852"
     },
     recipient: {
       name: "Fedora Ribeiro",
       email: "vagn.fedora@gmail.com",
+      id: "d290f1ee-6c54-4b01-90e6-d701748f0851"
     },
     message:
       "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...",
