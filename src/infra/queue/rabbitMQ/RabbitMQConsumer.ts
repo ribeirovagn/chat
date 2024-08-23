@@ -26,7 +26,7 @@ export default class RabbitMQConsumer {
 
                 if (_json.isValid()) {
                     try {
-                        callback(data);
+                        callback(JSON.parse(data));
                         this.channel.ack(message, false);
                     } catch (error) {
 

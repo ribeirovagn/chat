@@ -7,7 +7,7 @@ export default class SendMessage {
 
     async execute(input: Input): Promise<Message> {
         const time = new Date().getTime();
-        const message = Message.create(input.message, time, input.from, input.subject);
+        const message = Message.create(input.message, time, input.sender, input.recipient);
         const parsed = JSON.stringify(message);
 
         // Enfileiramento de menssagens
