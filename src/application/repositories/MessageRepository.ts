@@ -3,5 +3,7 @@ import User from "../../domain/entities/User";
 
 export default interface MessageRepository {
     create(message: Message): Promise<void>;
-    findByUser(user: User): Promise<Message>;
+    findBySender(user: User): Promise<Message[]>;
+    findByRecipient(user: User): Promise<Message[]>;
+    updateStatus(message:Message): Promise<void>
 }
