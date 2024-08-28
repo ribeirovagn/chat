@@ -30,12 +30,8 @@ test("Deve enviar uma mensagem", async () => {
 });
 
 test("Deve ler as mensagens", async () => {
-    const channel = await RabbitMQConnection.getChannel();
-    const queue = new RabbitMQQueue(channel, "message-sending", "");
-    const consumer = new RabbitMQConsumer(channel, queue);
 
     const messageRepository = new MessageRepositoryPostgres();
-
     const receive = new ReceiveMessage(consumer, messageRepository);
 
     await receive.execute();

@@ -34,10 +34,10 @@ CREATE TABLE messages_have_status (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
 
-INSERT INTO users (id, name, email)
-VALUES
-    ('d290f1ee-6c54-4b01-90e6-d701748f0851', 'Ribeiro', 'ribeiro@example.com'),
-    ('d290f1ee-6c54-4b01-90e6-d701748f0852', 'Vagner', 'vagner@example.com');
+-- INSERT INTO users (id, name, email)
+-- VALUES
+--     ('d290f1ee-6c54-4b01-90e6-d701748f0851', 'Ribeiro', 'ribeiro@example.com'),
+--     ('d290f1ee-6c54-4b01-90e6-d701748f0852', 'Vagner', 'vagner@example.com');
 
 
 INSERT INTO message_status(id, ordering, name)

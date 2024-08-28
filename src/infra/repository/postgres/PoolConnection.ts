@@ -1,3 +1,4 @@
+import "dotenv/config";
 import pg from "pg";
 const { Pool } = pg;
 
@@ -8,7 +9,7 @@ export default class PoolConnection {
   private constructor() {}
 
   public static async getInstance(): Promise<pg.PoolClient> {
-    // Verifica se já existe uma instância e uma conexão ativa
+    
 
     PoolConnection.instance = new PoolConnection();
 

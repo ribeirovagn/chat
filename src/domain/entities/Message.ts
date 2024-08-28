@@ -3,7 +3,6 @@ import User from "./User";
 
 export default class Message {
 
-    
 
     constructor(readonly text: string, readonly time: Date, readonly sender: User, readonly recipient: User,  readonly id?: string, readonly status: number = 0) {
         if(!this.id) {
