@@ -5,10 +5,10 @@ import MessageRepository from "../repositories/MessageRepository";
 
 export default class ReceiveMessage {
 
-    constructor(readonly producer: RabbitMQConsumer, readonly messageRepository: MessageRepository) { }
+    constructor(readonly consumer: RabbitMQConsumer, readonly messageRepository: MessageRepository) { }
 
     async execute(): Promise<void> {
-        await this.producer.init(async(data: any) => {
+        await this.consumer.init(async(data: any) => {
             const sender = new User(data.sender.name, data.sender.email, data.sender.id);
             const recipient = new User(data.recipient.name, data.recipient.email, data.recipient.id);
             const date = new Date().getTime();
