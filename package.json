@@ -1,12 +1,14 @@
 {
   "scripts": {
     "test": "jest",
-    "dev-http": "ts-node ./src/infra/http/index.ts",
+    "dev-http": "ts-node ./src/infra/http/cluster.ts",
     "build": "tsc",
-    "start-http": "node ./build/src/infra/http/index.js"
+    "start-http": "rm -r build && npm run build && node ./build/src/infra/http/cluster.js",
+    "consume-message": "ts-node ./src/consumerMessages.ts"
   },
   "devDependencies": {
     "@types/amqplib": "^0.10.5",
+    "@types/compression": "^1.7.5",
     "@types/express": "^4.17.21",
     "@types/jest": "^29.5.12",
     "@types/pg": "^8.11.6",
@@ -19,6 +21,7 @@
   },
   "dependencies": {
     "amqplib": "^0.10.4",
+    "compression": "^1.7.4",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "pg": "^8.12.0",

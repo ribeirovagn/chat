@@ -19,6 +19,8 @@ export default class SendMessage {
             exchangeName: "message",  
         });
 
+        console.log(input);
+
         return message;
     }
 }

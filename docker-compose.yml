@@ -5,6 +5,8 @@ services:
     environment:
       RABBITMQ_DEFAULT_USER: ${RABBIT_MQ_USER}
       RABBITMQ_DEFAULT_PASS: ${RABBIT_MQ_PASS}
+    networks:
+      - bee-network            
     ports:
       - 5672:5672
       - 15672:15672
@@ -18,6 +20,8 @@ services:
       POSTGRES_PASSWORD: ${DB_PASS}
       POSTGRES_DB: ${DB_NAME}
       TZ: America/Sao_Paulo
+    networks:
+      - bee-network            
     ports:
       - "${DB_PORT}:${DB_PORT}" 
     volumes:
@@ -28,7 +32,74 @@ services:
     environment:
       PGADMIN_DEFAULT_EMAIL: "vagner@visualsoftware.inf.br"
       PGADMIN_DEFAULT_PASSWORD: ${DB_PASS}
+    networks:
+      - bee-network            
     ports:
       - "16543:80"
     depends_on:
       - db
+
+  web1:
+    container_name: bee_app_1
+    build:
+      context: .
+    restart: unless-stopped
+    volumes:
+      - ./:/app
+    networks:
+      - bee-network      
+    ports:
+      - 3000:3000
+
+  # web2:
+  #   container_name: bee_app_2
+  #   build:
+  #     context: .
+  #   restart: unless-stopped
+  #   volumes:
+  #     - ./:/app
+  #   networks:
+  #     - bee-network      
+  #   expose:
+  #     - 3000
+
+  # web3:
+  #   container_name: bee_app_3
+  #   build:
+  #     context: .
+  #   restart: unless-stopped
+  #   volumes:
+  #     - ./:/app
+  #   networks:
+  #     - bee-network      
+  #   expose:
+  #     - 3000
+
+  # web4:
+  #   container_name: bee_app_4
+  #   build:
+  #     context: .
+  #   restart: unless-stopped
+  #   volumes:
+  #     - ./:/app
+  #   networks:
+  #     - bee-network      
+  #   expose:
+  #     - 3000            
+
+  # nginx:
+  #   container_name: bee_balancer
+  #   image: nginx:latest
+  #   restart: unless-stopped
+  #   depends_on:
+  #     - web1
+  #   volumes:
+  #     - ./nginx.conf:/etc/nginx/nginx.conf
+  #   networks:
+  #     - bee-network
+  #   ports:
+  #     - 80:80
+
+networks:
+  bee-network:
+    driver: bridge      

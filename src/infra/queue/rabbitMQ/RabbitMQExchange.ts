@@ -13,16 +13,23 @@ export default class RabbitMQExchange {
     ) { }
 
     public async assert(_durable: boolean = false) {
+        try {
 
-        const options = {
-            durable: _durable,
-            internal: undefined,
-            autoDelete: undefined,
-            alternateExchange: undefined,
-            arguments: null
+            const options = {
+                durable: _durable,
+                internal: undefined,
+                autoDelete: undefined,
+                alternateExchange: undefined,
+                arguments: null
+            }
+
+            await this.channel.assertExchange(this.name, this.type, options);
+
+        } catch (e: any) {
+            console.error(e.message);
+            throw new Error(e.message);
+            
         }
-
-        await this.channel.assertExchange(this.name, this.type, options);
     }
 
     public async bindQueue(): Promise<void> {

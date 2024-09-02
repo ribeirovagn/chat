@@ -1,8 +1,6 @@
 import FetchMessages from "../src/application/useCases/FetchMessages";
-import ReceiveMessage from "../src/application/useCases/ReceiveMessage";
 import SendMessage from "../src/application/useCases/SendMessage";
 import Message from "../src/domain/entities/Message";
-import RabbitMQConsumerFactory from "../src/infra/queue/rabbitMQ/RabbitMQConsumerFactory";
 import RabbitMQProducer from "../src/infra/queue/rabbitMQ/RabbitMQProducer";
 import MessageRepositoryPostgres from "../src/infra/repository/postgres/MessageRepositoryPostgres";
 
@@ -25,10 +23,8 @@ test("Deve enviar uma mensagem", async () => {
 
   const producer = new RabbitMQProducer();
   const sendMessage = new SendMessage(producer);
-
   const randInt = crypto.randomInt(3, 8);
 
-  
     const input = {
       sender: {
         name: "Vagner Ribeiro",
