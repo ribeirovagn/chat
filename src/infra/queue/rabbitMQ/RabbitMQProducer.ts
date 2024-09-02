@@ -8,10 +8,8 @@ export default class RabbitMQProducer implements Producer{
     async init(data: Object, options: OptsProducer) {
 
         await RabbitMQConnection.getInstance();
-
-        const channel = await RabbitMQConnection.getChannel();
-        const queue = new RabbitMQQueue(channel, options.queueName, options.queuePattern);
-        const exchange = new RabbitMQExchange(channel, queue, options.exchangeName, options.exchangeType, options.bindingKey);
+        const queue = new RabbitMQQueue(RabbitMQConnection.channel, options.queueName, options.queuePattern);
+        const exchange = new RabbitMQExchange(RabbitMQConnection.channel, queue, options.exchangeName, options.exchangeType, options.bindingKey);
 
         await exchange.assert(true);
         await exchange.publishBindQueue(data);

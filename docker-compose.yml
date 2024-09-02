@@ -48,20 +48,20 @@ services:
       - ./:/app
     networks:
       - bee-network      
-    ports:
-      - 3000:3000
+    expose:
+      - 3000
 
-  # web2:
-  #   container_name: bee_app_2
-  #   build:
-  #     context: .
-  #   restart: unless-stopped
-  #   volumes:
-  #     - ./:/app
-  #   networks:
-  #     - bee-network      
-  #   expose:
-  #     - 3000
+  web2:
+    container_name: bee_app_2
+    build:
+      context: .
+    restart: unless-stopped
+    volumes:
+      - ./:/app
+    networks:
+      - bee-network      
+    expose:
+      - 3000
 
   # web3:
   #   container_name: bee_app_3
@@ -87,18 +87,18 @@ services:
   #   expose:
   #     - 3000            
 
-  # nginx:
-  #   container_name: bee_balancer
-  #   image: nginx:latest
-  #   restart: unless-stopped
-  #   depends_on:
-  #     - web1
-  #   volumes:
-  #     - ./nginx.conf:/etc/nginx/nginx.conf
-  #   networks:
-  #     - bee-network
-  #   ports:
-  #     - 80:80
+  nginx:
+    container_name: bee_balancer
+    image: nginx:latest
+    restart: unless-stopped
+    depends_on:
+      - web1
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    networks:
+      - bee-network
+    ports:
+      - 80:80
 
 networks:
   bee-network:
