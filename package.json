@@ -1,7 +1,7 @@
 {
   "scripts": {
     "test": "jest",
-    "dev-http": "ts-node ./src/infra/http/cluster.ts",
+    "dev-http": "ts-node-dev ./src/infra/http/cluster.ts",
     "build": "tsc",
     "start-http": "rm -r build && npm run build && node ./build/src/infra/http/cluster.js",
     "consume-message": "ts-node ./src/consumerMessages.ts"
@@ -16,6 +16,7 @@
     "lorem-ipsum": "^2.0.8",
     "ts-jest": "^29.2.4",
     "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
     "tsx": "^4.17.0",
     "typescript": "^5.5.4"
   },
