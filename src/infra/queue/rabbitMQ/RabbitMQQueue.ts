@@ -7,7 +7,9 @@ export default class RabbitMQQueue {
         readonly channel: Channel,
         readonly name: string,
         readonly pattern: string = ""
-    ) { }
+    ) { 
+        this.assert();
+    }
 
 
     public async assert(_durable: boolean = false): Promise<void> {

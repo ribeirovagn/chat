@@ -46,6 +46,7 @@ services:
     restart: unless-stopped
     volumes:
       - ./:/app
+    command: npm run dev-http      
     networks:
       - bee-network      
     expose:
@@ -58,34 +59,26 @@ services:
     restart: unless-stopped
     volumes:
       - ./:/app
+    command: npm run dev-http
     networks:
       - bee-network      
     expose:
       - 3000
 
-  # web3:
-  #   container_name: bee_app_3
-  #   build:
-  #     context: .
-  #   restart: unless-stopped
-  #   volumes:
-  #     - ./:/app
-  #   networks:
-  #     - bee-network      
-  #   expose:
-  #     - 3000
-
-  # web4:
-  #   container_name: bee_app_4
-  #   build:
-  #     context: .
-  #   restart: unless-stopped
-  #   volumes:
-  #     - ./:/app
-  #   networks:
-  #     - bee-network      
-  #   expose:
-  #     - 3000            
+  consumer:
+    container_name: bee_consumer
+    build:
+      context: .
+    restart: unless-stopped
+    depends_on:
+      - yamq
+    volumes:
+      - ./:/app
+    command: npm run consumer
+    networks:
+      - bee-network      
+    expose:
+      - 3000      
 
   nginx:
     container_name: bee_balancer
